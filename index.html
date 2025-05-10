@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MyPortfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      font-family: 'Roboto', sans-serif;
+      color: #1d1d1f;
+      background-color: #fff;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-size: 17px;
+      line-height: 1.5;
+    }
+
+    header {
+      width: 100%;
+      background: #fff;
+      border-bottom: 1px solid #e5e5e5;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+    }
+
+    nav {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 12px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+    }
+
+    .logo {
+      font-weight: 600;
+      font-size: 20px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #1d1d1f;
+      font-size: 14px;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      width: 0%;
+      height: 2px;
+      background-color: #0071e3;
+      bottom: -4px;
+      left: 0;
+      transition: width 0.3s;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .lang-select {
+      display: flex;
+      gap: 10px;
+    }
+
+    .lang-select button {
+      background: none;
+      border: none;
+      font-size: 14px;
+      cursor: pointer;
+      color: #1d1d1f;
+    }
+
+    .lang-select button:hover {
+      opacity: 0.6;
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 4px;
+      cursor: pointer;
+    }
+
+    .hamburger span {
+      width: 20px;
+      height: 2px;
+      background: #1d1d1f;
+    }
+
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 60px;
+      right: 20px;
+      background: white;
+      border: 1px solid #ddd;
+      padding: 10px;
+      border-radius: 8px;
+      z-index: 1000;
+    }
+
+    .mobile-menu.show {
+      display: flex;
+    }
+
+    .mobile-menu a {
+      text-decoration: none;
+      color: #1d1d1f;
+      padding: 8px 0;
+      font-size: 14px;
+    }
+
+    .mobile-menu a:hover {
+      color: #0071e3;
+    }
+
+    .hero {
+      position: relative;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .hero video {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      min-width: 100%;
+      min-height: 100%;
+      transform: translate(-50%, -50%);
+      object-fit: cover;
+      z-index: 0;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.4);
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      color: white;
+      top: 50%;
+      transform: translateY(-50%);
+      padding: 0 20px;
+    }
+
+    .hero-content h1 {
+      font-size: 42px;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+
+    .hero-content p {
+      font-size: 20px;
+      margin-bottom: 30px;
+    }
+
+    .btn {
+      background: #0071e3;
+      color: white;
+      padding: 12px 24px;
+      border-radius: 980px;
+      text-decoration: none;
+      font-size: 17px;
+      font-weight: 500;
+      transition: background 0.3s;
+    }
+
+    .btn:hover {
+      background: #005bb5;
+    }
+
+    .section {
+      max-width: 980px;
+      margin: 80px auto;
+      padding: 0 20px;
+    }
+
+    .section h2 {
+      font-size: 28px;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    .section p {
+      font-size: 18px;
+      color: #515154;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 14px;
+      color: #6e6e73;
+      padding: 40px 20px;
+      border-top: 1px solid #e5e5e5;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+    }
+    .logo {
+      font-weight: 600;
+      font-size: 20px;
+      text-decoration: none; /* a 태그 기본 밑줄 제거 */
+      color: #1d1d1f;         /* 로고 텍스트 색 유지 */
+    }
+    .logo:hover {
+      opacity: 0.8;
+    }
+  </style>
+</head>
+<body>
+  <div id="top"></div>
+  <header>
+    <nav>
+      <a href="#top" class="logo">MyPortfolio</a>
+
+      <div class="nav-links" id="nav-links">
+        <a href="#intro">소개</a>
+        <a href="#projects">프로젝트</a>
+        <a href="#contact">연락처</a>
+      </div>
+
+      <div class="lang-select">
+        <button onclick="setLanguage('ko')">한국어</button>
+        <button onclick="setLanguage('en')">EN</button>
+        <button onclick="setLanguage('jp')">JP</button>
+      </div>
+
+      <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+
+      <div class="mobile-menu" id="mobile-menu">
+        <a href="#intro">소개</a>
+        <a href="#projects">프로젝트</a>
+        <a href="#contact">연락처</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <video autoplay muted loop playsinline>
+        <source src="https://cdn.pixabay.com/video/2023/09/07/179458-862151947_large.mp4" type="video/mp4" />
+      </video>
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <h1 id="welcome-title">안녕하세요!</h1>
+        <p id="welcome-text">저의 개인 홈페이지에 오신 것을 환영합니다.</p>
+        <a href="#intro" class="btn" id="learn-more">더 알아보기</a>
+      </div>
+    </section>
+
+    <section class="section" id="intro">
+      <h2>소개</h2>
+      <p id="intro-text">저는 열정적인 개발자이며, 다양한 프로젝트를 통해 경험을 쌓아왔습니다.</p>
+    </section>
+
+    <section class="section" id="projects">
+      <h2>프로젝트</h2>
+      <p>포트폴리오 웹사이트, Todo 앱, 팀 프로젝트 협업 플랫폼</p>
+    </section>
+
+    <section class="section" id="contact">
+      <h2>연락처</h2>
+      <p>이메일: example@example.com</p>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2025 나의 홈페이지. All rights reserved.
+  </footer>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    hamburger.addEventListener('click', () => {
+      mobileMenu.classList.toggle('show');
+    });
+
+    // PC 모드로 전환 시 모바일 메뉴 강제 닫기
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 768) {
+        mobileMenu.classList.remove('show');
+      }
+    });
+
+    function setLanguage(lang) {
+      const langs = {
+        ko: {
+          title: "안녕하세요!",
+          text: "저의 개인 홈페이지에 오신 것을 환영합니다.",
+          learn: "더 알아보기",
+          intro: "저는 열정적인 개발자이며, 다양한 프로젝트를 통해 경험을 쌓아왔습니다.",
+        },
+        en: {
+          title: "Hello!",
+          text: "Welcome to my personal website.",
+          learn: "Learn More",
+          intro: "I’m a passionate developer with experience through various projects.",
+        },
+        jp: {
+          title: "こんにちは！",
+          text: "私の個人ホームページへようこそ。",
+          learn: "もっと見る",
+          intro: "私は情熱的な開発者で、様々なプロジェクトを通じて経験を積んできました。",
+        }
+      };
+      document.getElementById('welcome-title').textContent = langs[lang].title;
+      document.getElementById('welcome-text').textContent = langs[lang].text;
+      document.getElementById('learn-more').textContent = langs[lang].learn;
+      document.getElementById('intro-text').textContent = langs[lang].intro;
+    }
+  </script>
+</body>
+</html>
